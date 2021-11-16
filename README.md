@@ -7,11 +7,11 @@ Tested on Waveshare Servo Driver Hat. Will likely work on the Adafruit PCA9685 b
 Requires cbpi>=4.0.0.45
 
 Settings will be added by this plugin:
-- Address: Address of the PCA9685 device. Boards typically display both a low (0x40) and high (0x70) address. Select the low address. If no devices are listed ensure you have enabled I2C on your Raspberry PI and check if the device exists in ("/dev/i2c-*")
-- Channel (0-15): PWM output to use
+- Address: Address of the PCA9685 device. Boards typically display both a low (0x40) and high (0x70) address. Select the low address. If no devices are listed ensure you have enabled I2C on your Raspberry PI and check if the device exists in ("/dev/i2c-*").
+- Channel (0-15): Output pin to use on the PCA9685.
 - Frequency (50 HZ): Frequency to output. Frequency is set for all channels at once, do not mix and match frequencies on a single device (address). Typically 50 hz is good for servos and 1000 hz is good for general PWM outputs.
-- Servo_Min_Pulse_Width - Value between 0 and 4095 that corresponds to your servos minimum rotation angle. If using as a general PWM output set to 0. This will be ranged to 0% output of the actor.
-- Servo_Max_Pulse_Width - Value between 0 and 4095 that corresponds to your servos maximum rotation angle. If using as a general PWM output set to 4095. This will be ranged to 100% output of the actor.
+- Servo_Min_Pulse_Width - Value between 0 and 4095 that corresponds to your servos minimum rotation angle. If using as a general PWM output set to 0 (12bit PWM resolution). This will be ranged to 0% output of the actor.
+- Servo_Max_Pulse_Width - Value between 0 and 4095 that corresponds to your servos maximum rotation angle. If using as a general PWM output set to 4095 (12bit PWM resolution). This will be ranged to 100% output of the actor.
 
 ## Use as a servo controller
 
