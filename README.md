@@ -1,10 +1,11 @@
-# CBPi4 I2C PWM
-
-## I2C PWM Plugin for CBPi4 PCA9685
+# I2C PWM Plugin for CBPi4 PCA9685
 
 Tested on Waveshare Servo Driver Hat. Will likely work on the Adafruit PCA9685 breakout board as well.
 
 Requires cbpi>=4.0.0.45
+
+
+## Settings
 
 Settings will be added by this plugin:
 - Address: Address of the PCA9685 device. Boards typically display both a low (0x40) and high (0x70) address. Select the low address. If no devices are listed ensure you have enabled I2C on your Raspberry PI and check if the device exists in ("/dev/i2c-*").
