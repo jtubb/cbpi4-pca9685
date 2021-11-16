@@ -24,10 +24,10 @@ Next you need to add a beefy capacitor across the 5V rail. I had a 6.3V 1500uF h
 <img src="/artifacts/CapLocation.jpg?raw=true" width="400" height="400">
 Install the capacitor on the exposed header. Ensure you match the polarity correctly!
 
-" width="200" height="200">/artifacts/AddCap.jpg?raw=true" width="400" height="400">
+<img src="/artifacts/AddCap.jpg?raw=true" width="400" height="400">
 The capacitor will look like this when completed.
 
-" width="200" height="200">/artifacts/CapClearance.jpg?raw=true" width="400" height="400">
+<img src="/artifacts/CapClearance.jpg?raw=true" width="400" height="400">
 If you are using heat sinks on your Raspberry PI ensure that the leads of the capacitor aren't shorted.
 
 ## Use as a 5V PWM controller
