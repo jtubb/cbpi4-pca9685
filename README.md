@@ -48,7 +48,7 @@ If you are using heat sinks on your Raspberry PI ensure that the leads of the ca
 
 ## Use as a 5V PWM controller
 
-**NOTE: YOU SHOULD NOT DRIVE LARGE LOADS DIRECTLY FROM THE PWM OUTPUTS OF THE PCA9685. The PCA9685 output drivers can sink up to 25 mA at 5 V and are intended for direct driving of LEDs or a transistor to switch a larger load. See page 29 of the PCA9685 (datasheet)[(https://www.nxp.com/docs/en/data-sheet/PCA9685.pdf)] for standard applications.** 
+**NOTE: YOU SHOULD NOT DRIVE LARGE LOADS DIRECTLY FROM THE PWM OUTPUTS OF THE PCA9685. The PCA9685 output drivers can sink up to 25 mA at 5 V and are intended for direct driving of LEDs or a transistor to switch a larger load. See page 29 of the PCA9685 [datasheet](https://www.nxp.com/docs/en/data-sheet/PCA9685.pdf) for standard applications.** 
 
 By default the Waveshare board outputs 3.3V on the signal line, if 5V PWM is required one more modification is necessary. This modification will also raise the I2C pins on the PCA9685 board to 5V, your Raspberry PI IO is at 3.3V. The appropriate way to account for this is to add a level shift chip between the Raspberry PI and the PCA9685 controller SDA and SCL lines.
 
