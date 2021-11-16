@@ -17,17 +17,17 @@ If you are intending to use the Waveshare Servo Driver Hat to control servos, se
 
 First you should isolate the power supply of the Raspberry PI from the Waveshare Servo Hat. This will prevent any voltage transients from the motors from feeding back through the 5V rail and destroying your Raspberry PI. This can be accomplished by removing the "R0" resistor from the board. After this you will have to provide a 5v power supply to the Raspberry PI and a 6-12V power supply to the PCA9685 board.
 
-<img src="/artifacts/IsolateRPI.jpg?raw=true" width="200" height="200">
+<img src="/artifacts/IsolateRPI.jpg?raw=true" width="400" height="400">
 
 Next you need to add a beefy capacitor across the 5V rail. I had a 6.3V 1500uF handy so that's what I used, somewhere between 1000uF and 2000uF should be good. This will prevent voltage drops and subsequent positioning errors that may occur when operating multiple servos. This capacitor is already built into the Adafruit PCA9685 shield.
 
-<img src="/artifacts/CapLocation.jpg?raw=true" width="200" height="200">
+<img src="/artifacts/CapLocation.jpg?raw=true" width="400" height="400">
 Install the capacitor on the exposed header. Ensure you match the polarity correctly!
 
-" width="200" height="200">/artifacts/AddCap.jpg?raw=true" width="200" height="200">
+" width="200" height="200">/artifacts/AddCap.jpg?raw=true" width="400" height="400">
 The capacitor will look like this when completed.
 
-" width="200" height="200">/artifacts/CapClearance.jpg?raw=true" width="200" height="200">
+" width="200" height="200">/artifacts/CapClearance.jpg?raw=true" width="400" height="400">
 If you are using heat sinks on your Raspberry PI ensure that the leads of the capacitor aren't shorted.
 
 ## Use as a 5V PWM controller
@@ -36,10 +36,10 @@ By default the Waveshare board outputs 3.3V on the signal line, if 5V PWM is req
 
 However as long as the SDA and SCL lines do not have a pullup resistor (they do not on the Waveshare board), the risk of sinking more current than the Raspberry PI can support is very low. Low but not zero, this is not supported and will once again fry your Raspberry PI if you don't know what you're doing. Anyway here's how to do it.
 
-<img src="/artifacts/CapClearance.jpg?raw=true" width="200" height="200">
+<img src="/artifacts/CapClearance.jpg?raw=true" width="400" height="400">
 First you need to remove the 3.3V regulator chip from the board.
 
-<img src="/artifacts/Jumper5v.jpg?raw=true" width="200" height="200">
+<img src="/artifacts/Jumper5v.jpg?raw=true" width="400" height="400">
 Jumper wire to connect the 5v bus across to what used to be the 3.3v bus.
 
 Your PCA9685 PWM outputs will now be at 5V.
