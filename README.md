@@ -1,8 +1,17 @@
 # I2C PWM Plugin for CBPi4 PCA9685
 
-Tested on Waveshare Servo Driver Hat. Will likely work on the Adafruit PCA9685 breakout board as well.
+Tested on Waveshare Servo Driver Hat on a Raspberry PI 3B. Will likely work with the Adafruit PCA9685 breakout board as well.
 
-Requires cbpi>=4.0.0.45
+## Installation/Upgrade
+
+From your command line run the following:
+
+'''
+sudo pip3 install --upgrade https://github.com/jtubb/cbpi4-pca9685/archive/main.zip
+cbpi add cbpi4-pca9685
+'''
+
+Requires cbpi>=4.0.0.45, current development branch.
 
 
 ## Settings
