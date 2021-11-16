@@ -1,4 +1,4 @@
-# I2C PWM Plugin for CBPi4 PCA9685
+# PCA9685 I2C PWM Actor Plugin for CraftBeerPi4 
 
 Tested on Waveshare Servo Driver Hat on a Raspberry PI 3B. Will likely work with the Adafruit PCA9685 breakout board as well.
 
