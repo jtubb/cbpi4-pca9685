@@ -6,10 +6,10 @@ Tested on Waveshare Servo Driver Hat on a Raspberry PI 3B. Will likely work with
 
 From your command line run the following:
 
-'''
+```
 sudo pip3 install --upgrade https://github.com/jtubb/cbpi4-pca9685/archive/main.zip
 cbpi add cbpi4-pca9685
-'''
+```
 
 Requires cbpi>=4.0.0.45, current development branch.
 
