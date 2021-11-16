@@ -42,7 +42,7 @@ However as long as the SDA and SCL lines do not have a pullup resistor (they do 
 
 First you need to remove the RT9193 3.3V regulator chip from the board.
 
-<img src="/artifacts/CapClearance.jpg?raw=true" width="400" height="400">
+<img src="/artifacts/RemoveRT9193.jpg?raw=true" width="400" height="400">
 
 Jumper wire to connect the 5v bus across to what used to be the 3.3v bus.
 
