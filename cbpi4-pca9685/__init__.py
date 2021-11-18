@@ -55,9 +55,7 @@ class PCA9685Actor(CBPiActor):
     # Custom property which can be configured by the user
     @action("Set Power", parameters=[Property.Number(label="Power", configurable=True,description="Power Setting [0-100]")])
     async def setpower(self,Power = 100 ,**kwargs):
-        print("test", kwargs)
-        #self.dev.set_pwm(int(self.props.Channel), self.pulseWidth(power))
-        await self.set_pulseWidth(Power);
+        await self.set_pulseWidth(int(Power));
     
     async def set_pulseWidth(self, power):
         if (power<0):
@@ -78,7 +76,7 @@ class PCA9685Actor(CBPiActor):
     async def on(self, power=None):
         try:
             if power is not None:
-                await self.set_pulseWidth(power);
+                await self.set_pulseWidth(int(power));
             self.state = True
         except Exception as e:
             logger.info("PCA9685 ACTOR %s ERR: %s" % (self.id, e))
