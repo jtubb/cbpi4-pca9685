@@ -55,7 +55,18 @@ class PCA9685Actor(CBPiActor):
     # Custom property which can be configured by the user
     @action("Set Power", parameters=[Property.Number(label="Power", configurable=True,description="Power Setting [0-100]")])
     async def setpower(self,Power = 100 ,**kwargs):
-        await self.set_pulseWidth(int(Power));
+        self.power=int(Power)
+        if self.power < 0:
+            self.power = 0
+        if self.power > 100:
+            self.power = 100           
+        await self.set_power(self.power)
+    
+    async def set_power(self, power):
+        if self.state == True:
+            await self.set_pulseWidth(power)
+        await self.cbpi.actor.actor_update(self.id,power)
+        pass
     
     async def set_pulseWidth(self, power):
         if (power<0):
@@ -66,18 +77,32 @@ class PCA9685Actor(CBPiActor):
         pulse_width = int(interp(power, [0, 100], [int(self.props.Servo_Min_Pulse_Width), int(self.props.Servo_Max_Pulse_Width)]));
         logger.info("PCA9685 ACTOR %s ADDR: %s CHANNEL: %s RANGED TO: %s" % (self.id, self.props.Address, self.props.Channel, pulse_width))
         self.dev.set_pwm(int(self.props.Channel), pulse_width)
-        await self.cbpi.actor.actor_update(self.id,power)
         pass
         
     async def on_start(self):
+        self.power = 100
         self.state = False
-
+        try:
+            self.props.GPIO = self.props.Address+":"+str(self.props.Channel)
+            addrBus = self.props.Address.split(':')
+            #self.dev=Device(address=0x40, bus_number=1)
+            addressValue=int(addrBus[1],0)
+            bus_numberValue=int(addrBus[0].replace('i2c-',''))
+            logger.info("PCA9685 ACTOR %s CONNECTING TO ADDR: %s BUS: %s" % (self.id, format(hex(addressValue)), addrBus[0]))
+            self.dev = Device(address=addressValue, bus_number=bus_numberValue)
+            self.dev.ranges['led_value'] = (0, 4096)
+            self.dev.set_pwm_frequency(int(self.props.Frequency))
+        except Exception as e:
+            logger.info("PCA9685 ACTOR %s ERR: %s" % (self.id, e))
+            pass
 
     async def on(self, power=None):
+        if power is not None:
+            self.power = int(power)
         try:
-            if power is not None:
-                await self.set_pulseWidth(int(power));
+            await self.set_pulseWidth(self.power);
             self.state = True
+            await self.cbpi.actor.actor_update(self.id,self.power)
         except Exception as e:
             logger.info("PCA9685 ACTOR %s ERR: %s" % (self.id, e))
             pass
@@ -94,21 +119,7 @@ class PCA9685Actor(CBPiActor):
     def get_state(self):
         return self.state
     
-    async def run(self):
-        try:
-            self.props.GPIO = self.props.Address+":"+str(self.props.Channel)
-            addrBus = self.props.Address.split(':')
-            #self.dev=Device(address=0x40, bus_number=1)
-            addressValue=int(addrBus[1],0)
-            bus_numberValue=int(addrBus[0].replace('i2c-',''))
-            logger.info("PCA9685 ACTOR %s CONNECTING TO ADDR: %s BUS: %s" % (self.id, format(hex(addressValue)), addrBus[0]))
-            self.dev = Device(address=addressValue, bus_number=bus_numberValue)
-            self.dev.ranges['led_value'] = (0, 4096)
-            self.dev.set_pwm_frequency(int(self.props.Frequency))
-        except Exception as e:
-            logger.info("PCA9685 ACTOR %s ERR: %s" % (self.id, e))
-            pass
-            
+    async def run(self):         
         while self.running == True:
             
             await asyncio.sleep(1)
