@@ -20,7 +20,7 @@ setup(name='cbpi4-pca9685',
       'cbpi4-pca9685': ['*','*.txt', '*.rst', '*.yaml']},
       packages=['cbpi4-pca9685'],
 	    install_requires=[
-            'cbpi>=4.0.0.45',
+            'cbpi4>=4.0.0.45',
             'numpy',
             'pca9685_driver'
       ],
